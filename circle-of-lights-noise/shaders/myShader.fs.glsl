@@ -29,14 +29,44 @@ void main() {
   int iAmount = 40;
 
   for(int i = 0; i < 40; i++){
-    float radius = 0.4 * noise(uv) / (sin(uTime * 0.25)) * (cos(uTime * 0.25));
-    float rad = radians(360.0 / amount) * float(i);
+    float ifloat = float(i);
+    // float radius = 0.4 * noise(uv) + (sin(uTime * 0.25)) * (cos(uTime * 0.25));
 
-    color += 0.003 / length(uv + vec2((radius) * cos(rad), (radius) * sin(rad)));
+    float radius = 0.4 * noise(uv + 0. + uTime) + (sin(uTime * 0.25 + 0.)) * (cos(uTime * 0.25 + ifloat));
+    float rad = radians(360.0 / amount) * float(i) + uTime * 0.25;
+
+    rad = clamp(rad, 0.0, 6.28318530718);
+
+    color += 0.003 / length(uv + vec2((radius) * cos(rad + ifloat), (radius) * sin(rad + ifloat)));
   }
-  vec3 c1 = vec3(0.5, 0.0, 1.0);
-	vec3 c2 = vec3(1.0, 1.0, 0.0);
+
+  for(int i = 0; i < 40; i++){
+    float ifloat = float(i);
+    // float radius = 0.4 * noise(uv) + (sin(uTime * 0.25)) * (cos(uTime * 0.25));
+
+    float radius = 0.2 * noise(uv + 0. + uTime * 0.25) + (sin(uTime * 0.25 + 0.)) * (cos(uTime * 0.25 + ifloat));
+    float rad = radians(360.0 / amount) * float(i) + uTime * 0.25;
+
+    rad = clamp(rad, 0.0, 6.28318530718);
+
+    color += 0.001 / length(uv + vec2((radius) * cos(rad + ifloat), (radius) * sin(rad + ifloat)));
+  }
+
+
+  for(int i = 0; i < 40; i++){
+    float ifloat = float(i);
+    // float radius = 0.4 * noise(uv) + (sin(uTime * 0.25)) * (cos(uTime * 0.25));
+
+    float radius = 0.9 * noise(uv + 0. + uTime * 0.25) + (sin(uTime * 0.25 + 0.)) * (cos(uTime * 0.25 + ifloat));
+    float rad = radians(360.0 / amount) * float(i) - uTime * 0.25;
+
+    rad = clamp(rad, 0.0, 4.);
+
+    color += 0.002 / length(uv + vec2((radius) * cos(rad + ifloat), (radius) * sin(rad + ifloat)));
+  }
+  vec3 c1 = vec3(0.1333, 1.0, 0.0);
+	vec3 c2 = vec3(0.8078, 0.9725, 0.7725);
 	
-	color = mix(c1, c2, color);
+	color = step(c1 * c2, color);
   gl_FragColor = vec4(color, 1.0);
 }

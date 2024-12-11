@@ -7,14 +7,14 @@
 // VARIABLES
 /* ------------------------------ */
 let canvas;
-let pixelDensityValue = 2;
+let pixelDensityValue = 1;
 let myShader;
 
 /* ------------------------------ */
 // TWEAKPANE
 /* ------------------------------ */
 let debugFont;
-let showTweaks = 1;
+let showTweaks = 0;
 const PARAMS = {
   moment: 0.43,
   noiseScale: 0.1,
