@@ -5,8 +5,7 @@
   varying vec2 vTexCoord;
 
   void main() {
-    vec2 uv = vTexCoord - 0.5;
-    uv.x *= uResolution.x / uResolution.y;
+    vec2 uv = (gl_FragCoord.xy - (uResolution.xy * 0.5)) / uResolution.y;
     
     float freq = 10.0;
     float pattern = 
